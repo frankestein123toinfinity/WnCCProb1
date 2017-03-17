@@ -1,19 +1,18 @@
 import time, sys, math, requests, bs4
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.touch_actions import TouchActions
 
 #Test for One Singer
-string = input('Enter Singer:' )
+string = "eminem"               #input('Enter Singer:' )
 string = string.lower()
 string = string.replace(' ', '')
-print(string)
 #Obtain URL of Singer and store
 url_singer = 'http://www.lyricsondemand.com/' + string[0] + '/' + string + 'lyrics'
 
 driver = webdriver.Chrome()  #Accessing Root File, ChromeDriver
 
 #Opening Artist Page
-driver.get(url_singer)
 res = requests.get(url_singer)
 
 #Status of response
@@ -23,11 +22,14 @@ except Exception as exc:
     print('There was a problem: %s' %(exc))
 
 bSobject = bs4.BeautifulSoup(res.text, "html.parser")
-#Try to find all elements that point to Songs by Artist
-#Next open in New Tab, Scrape for lyrics, find no of matches, close tab and switch to next Tab
-#Plan Uptil now....
-elems = bSobject.select('.fullalbm')
+#Try to find all elements that point to the artist's albums
+#Use this to access complete lyrics list
+#Only problem being find_all not returning all elements... Ye bas ho jaaye BC 
+
+elems = bSobject.findAll(class_="fullalbm", limit =50, recursive=True)
 print(elems[0].getText())
+elems1 = elems.find_all_next(class_="fullalbm")
+print(elems1[0].getText())
 
 while True:
     print("Enter to exit :P")
