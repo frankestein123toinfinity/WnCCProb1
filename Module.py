@@ -13,11 +13,8 @@ def statusofResponse(res):          #Name is obvious :P
     except Exception as exc:
         print('There was a problem: %s' %(exc))
 
-#Input of Singer & wordSearch
-singer =input('Enter Singer:')
-wordSearch =input('Enter Word:')
 
-def Main(singer, wordSearch):
+def wordCount(singer, wordSearch):
     #Obtain URL of Singer and store
     singer = removeSpace(singer)
     url_singer = 'http://www.lyricsondemand.com/' + singer[0] + '/' + singer + 'lyrics'
@@ -63,12 +60,3 @@ def Main(singer, wordSearch):
         counter += lyrics.count(wordSearch)
 
     return counter
-
-print(Main(singer, wordSearch))
-
-while True:
-    print("Enter to exit :P")
-    response = input()
-    if response!="headerfilemagma":
-        driver.quit()
-        sys.exit()

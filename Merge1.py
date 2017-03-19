@@ -1,5 +1,8 @@
 import time, sys, math, requests, bs4
 from bs4 import BeautifulSoup
+from selenium import webdriver
+driver = webdriver.Chrome()     #Unnecessary bt Meh...
+
 
 #Test for Singer
 def removeSpace(string):
@@ -50,17 +53,17 @@ for i in range (0,len(album)):
 
 wordSearch="He"
 counter = 0
-lyrics = ""
+
 
 for i in range (0, len(album)):
+    print(url_singer_Album[i])
     res_album = requests.get(url_singer_Album[i])
     statusofResponse(res_album)
     bsAlbumObject = bs4.BeautifulSoup(res_album.text, "html.parser")
     elems_Album = bsAlbumObject.find_all(class_="lcontent")
-    lyrics = elems_Album[i].getText()
-    counter += lyrics.count(substring)
+    lyrics = elems_Album[0].getText()
+    print(lyrics)
 
-print(counter)
 
 while True:
     print("Enter to exit :P")
