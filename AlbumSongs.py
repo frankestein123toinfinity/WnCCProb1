@@ -19,3 +19,13 @@ while True:
     if response!="headerfilemagma":
         driver.quit()
         sys.exit()
+
+for i in range (0, len(album)):
+    res_album = requests.get(url_singer_Album[i])
+    statusofResponse(res_album)
+    bsAlbumObject = bs4.BeautifulSoup(res_album.text, "html.parser")
+    elems_Album = bsAlbumObject.find_all(class_="lcontent")
+    lyrics = elems_Album[i].getText()
+    counter += lyrics.count(substring)
+
+return counter

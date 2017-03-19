@@ -126,3 +126,15 @@
 [0318/201205.355:ERROR:crash_report_database_win.cc(563)] CreateDirectory C:\Program Files (x86)\reports: Access is denied. (0x5)
 [0318/201205.389:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
 [0318/201205.391:ERROR:crash_report_database_win.cc(563)] CreateDirectory C:\Program Files (x86)\reports: Access is denied. (0x5)
+[0319/185659.266:ERROR:process_info.cc(625)] range at 0xce032aa800000000, size 0x27f fully unreadable
+[0319/185659.267:ERROR:process_info.cc(625)] range at 0xce032ac800000000, size 0x27f fully unreadable
+[0319/185659.267:ERROR:process_info.cc(625)] range at 0x0, size 0x27f fully unreadable
+[0319/185839.494:ERROR:process_reader_win.cc(114)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights.  (0xc0000022)
+[0319/185839.502:ERROR:exception_snapshot_win.cc(87)] thread ID 9380 not found in process
+[0319/185839.502:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0319/185908.781:ERROR:process_reader_win.cc(114)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights.  (0xc0000022)
+[0319/185908.781:ERROR:exception_snapshot_win.cc(87)] thread ID 528 not found in process
+[0319/185908.781:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0319/190605.774:ERROR:process_reader_win.cc(114)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights.  (0xc0000022)
+[0319/190605.775:ERROR:exception_snapshot_win.cc(87)] thread ID 7960 not found in process
+[0319/190605.775:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
