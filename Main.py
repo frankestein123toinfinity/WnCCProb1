@@ -6,7 +6,9 @@ singer_list = []
 
 print("The site I have used has sensored cuss words")
 print("For Eg. fuck is written as f*ck and so on. Shit has not been censored.")
-wordSearch = input("Keeping this in mind, Enter Cuss word to Be Searched(in Lower Case):")
+print("Keeping this in mind, Enter Cuss word to Be Searched(in Lower Case):")
+wordSearch = input()
+wordSearch = wordSearch.lower()
 print("Provide No. of Artists followed by their Names:")
 n = int(input())
 
@@ -16,9 +18,14 @@ for i in range(0,n):
 
 for i in range(0,n):
      singer_dict[wordCount(singer_list[i], wordSearch)] = singer_list[i]
+print("")
+print("Final Result:")
+print("")
 
 for key in sorted(singer_dict, reverse=True):
-    print("%s: %s" % (key, singer_dict[key]))
+    print("%s with %s %ss" % (singer_dict[key], key, wordSearch ))
+
+print("")
 
 while True:
     print("Enter to exit :P")
