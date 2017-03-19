@@ -4,7 +4,6 @@ from selenium.webdriver.common.touch_actions import TouchActions
 
 driver = webdriver.Chrome()  #Accessing Root File
 
-driver.get('http://www.lyricsondemand.com/p/passengerlyrics/lethergolyrics.html')
 res = requests.get('http://www.lyricsondemand.com/p/passengerlyrics/lethergolyrics.html')
 noStarchSoup = bs4.BeautifulSoup(res.text, "html.parser")
 print(type(noStarchSoup))

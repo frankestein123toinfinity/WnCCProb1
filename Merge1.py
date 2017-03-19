@@ -1,35 +1,61 @@
 import time, sys, math, requests, bs4
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.touch_actions import TouchActions
 
-#Test for One Singer
-string = "eminem"               #input('Enter Singer:' )
-string = string.lower()
-string = string.replace(' ', '')
+#Test for Singer
+def removeSpace(string):
+    string = string.lower()
+    string = string.replace(' ', '')
+    return string
+
+singer = "Adele"                    #input('Enter Singer:' )
 #Obtain URL of Singer and store
-url_singer = 'http://www.lyricsondemand.com/' + string[0] + '/' + string + 'lyrics'
-
-driver = webdriver.Chrome()  #Accessing Root File, ChromeDriver
+singer = removeSpace(singer)
+url_singer = 'http://www.lyricsondemand.com/' + singer[0] + '/' + singer + 'lyrics'
 
 #Opening Artist Page
 res = requests.get(url_singer)
 
-#Status of response
-try:
-    res.raise_for_status()
-except Exception as exc:
-    print('There was a problem: %s' %(exc))
+def statusofResponse(res):
+    try:
+        res.raise_for_status()
+    except Exception as exc:
+        print('There was a problem: %s' %(exc))
 
-bSobject = bs4.BeautifulSoup(res.text, "html.parser")
+#Status of response
+statusofResponse(res)
+
+#Beautiful Soup object
+bsObject = bs4.BeautifulSoup(res.text, "html.parser")
+
 #Try to find all elements that point to the artist's albums
 #Use this to access complete lyrics list
-#Only problem being find_all not returning all elements... Ye bas ho jaaye BC 
+#Only problem being find_all not returning all elements... Ye bas ho jaaye BC
 
-elems = bSobject.findAll(class_="fullalbm", limit =50, recursive=True)
-print(elems[0].getText())
-elems1 = elems.find_all_next(class_="fullalbm")
-print(elems1[0].getText())
+elems = bsObject.find_all(class_='fullalbm')
+album = []
+for i in range (0,len(elems)):
+    album.append(elems[i].getText())
+
+#erase all instances of /n
+for i in range (0,len(album)):
+    album[i] = removeSpace(album[i])
+    album[i] = album[i].replace("lyrics","")
+
+url_singer_Album = []
+
+for i in range (0,len(album)):
+    url_singer_Album.append(url_singer + "/" + album[i] + "album" + "lyrics.html")
+
+wordSearch = "he"
+counter = 0
+
+url_singer_song = []
+res_album = requests.get(url_singer_Album[0])
+statusofResponse(res_album)
+bsAlbumObject = bs4.BeautifulSoup(res_album.text, "html.parser")
+elems_Album = bsAlbumObject.find_all(class_="lcontent")
+lyrics = elems_Album[0].getText()
+print(lyrics.count(wordSearch))
 
 while True:
     print("Enter to exit :P")

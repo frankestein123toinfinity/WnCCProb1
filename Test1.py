@@ -26,3 +26,17 @@ while True:
     if response!="headerfilemagma":
         driver.quit()
         sys.exit()
+
+
+
+wordSearch = "he"
+counter = 0
+i = 0
+
+url_singer_song = []
+res_album = requests.get(url_singer_Album[i])
+statusofResponse(res_album)
+bsAlbumObject = bs4.BeautifulSoup(res_album.text, "html.parser")
+elems_Album = bsAlbumObject.find_all(class_="lcontent")
+lyrics = elems_Album[0].getText()
+print(lyrics.count(wordSearch))
